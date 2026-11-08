@@ -1,0 +1,38 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Chips from '../../components/Chips.astro';
+import { maps, slugOf, link } from '../../lib/content';
+export async function getStaticPaths() { const m = await maps(); return m.nations.map((n) => ({ params: { slug: slugOf(n) }, props: { entry: n } })); }
+const { entry } = Astro.props;
+const d = entry.data;
+const m = await maps();
+const { Content } = await render(entry);
+const coach = d.coachSlug ? link(m.manager, d.coachSlug, '/managers') : null;
+const playersFrom = m.players.filter((p) => p.data.nationalTeam === slugOf(entry));
+const flag = `https://flagcdn.com/w160/${({ ENG: 'gb-eng', SCO: 'gb-sct', WAL: 'gb-wls', NIR: 'gb-nir', ESP: 'es', ARG: 'ar', FRA: 'fr', BRA: 'br', GER: 'de', POR: 'pt', NED: 'nl', ITA: 'it', BEL: 'be', CRO: 'hr', URU: 'uy', COL: 'co', MEX: 'mx', USA: 'us', CAN: 'ca', JPN: 'jp', KOR: 'kr', MAR: 'ma', SEN: 'sn', NGA: 'ng', EGY: 'eg', AUS: 'au', IRN: 'ir', KSA: 'sa', IND: 'in', DEN: 'dk', SUI: 'ch', TUR: 'tr', NOR: 'no', SWE: 'se', GHA: 'gh', CMR: 'cm', ECU: 'ec', CHI: 'cl', PAR: 'py', PER: 'pe', POL: 'pl', AUT: 'at', CZE: 'cz', SRB: 'rs', UKR: 'ua', WLS: 'gb-wls', IRL: 'ie', CHN: 'cn', NZL: 'nz', RSA: 'za', CIV: 'ci', ALG: 'dz', TUN: 'tn', QAT: 'qa', UZB: 'uz', JOR: 'jo', IRQ: 'iq' } as Record<string, string>)[d.code.toUpperCase()] ?? d.code.toLowerCase().slice(0, 2)}.png`;
+---
+<Base title={`${d.name}${d.gender === 'women' ? " women" : ''} national team`} description={d.summary}>
+  <div class="page-head">
+    <img src={flag} alt="" style="width:84px;height:56px;object-fit:cover;border-radius:8px" />
+    <div><span class="eyebrow">{d.confederation} · {d.gender === 'women' ? "Women's" : "Men's"} national team{d.nickname ? ` · ${d.nickname}` : ''}</span><h1>{d.name}</h1><p class="sub">{d.summary}</p></div>
+  </div>
+  <div class="stat-row">
+    {d.fifaRanking && <div class="stat"><b>#{d.fifaRanking}</b><span>FIFA ranking</span></div>}
+    {d.worldCupBest && <div class="stat"><b style="font-size:1rem">{d.worldCupBest}</b><span>World Cup best</span></div>}
+    {d.coach && <div class="stat"><b style="font-size:1rem">{coach?.exists ? <a href={coach.href}>{d.coach}</a> : d.coach}</b><span>head coach</span></div>}
+    {d.captain && <div class="stat"><b style="font-size:1rem">{d.captain}</b><span>captain</span></div>}
+  </div>
+  <div class="two">
+    <div>
+      {d.style && <div class="panel" style="margin-bottom:1.5rem;border-color:var(--accent)"><h3>Philosophy</h3><p style="margin:0">{d.style}</p></div>}
+      <article class="prose"><Content /></article>
+    </div>
+    <aside class="side">
+      {d.honours.length > 0 && <div class="panel"><h3>Honours</h3><ul style="margin:0;padding-left:1.1rem">{d.honours.map((h: string) => <li>{h}</li>)}</ul></div>}
+      {(d.keyPlayers.length > 0 || playersFrom.length > 0) && <div class="panel"><Chips title="Key players" slugs={[...new Set([...d.keyPlayers, ...playersFrom.filter((p) => p.data.status === 'active').map(slugOf)])]} map={m.player} base="/players" /></div>}
+      {d.legends.length > 0 && <div class="panel"><Chips title="Legends" slugs={d.legends} map={m.player} base="/players" /></div>}
+      <div class="panel"><h3>Tournaments</h3><div class="chip-list"><a href="/tournaments/world-cup">World Cup</a><a href="/tournaments/olympics-men">Olympics</a>{d.confederation.includes('UEFA') && <a href="/tournaments/euro">Euro</a>}{d.confederation.includes('CONMEBOL') && <a href="/tournaments/copa-america">Copa América</a>}{d.confederation.includes('CAF') && <a href="/tournaments/afcon">AFCON</a>}{d.confederation.includes('AFC') && <a href="/tournaments/asian-cup">Asian Cup</a>}{d.confederation.includes('CONCACAF') && <a href="/tournaments/gold-cup">Gold Cup</a>}</div></div>
+    </aside>
+  </div>
+</Base>

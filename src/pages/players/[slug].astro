@@ -1,0 +1,63 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Videos from '../../components/Videos.astro';
+import Chips from '../../components/Chips.astro';
+import { maps, slugOf, link } from '../../lib/content';
+import { liveLeagues, findTeam } from '../../lib/live';
+export async function getStaticPaths() { const m = await maps(); return m.players.map((p) => ({ params: { slug: slugOf(p) }, props: { entry: p } })); }
+const { entry } = Astro.props;
+const d = entry.data;
+const m = await maps();
+const { Content } = await render(entry);
+const club = d.currentClub ? m.club.get(d.currentClub) : undefined;
+const clubLink = d.currentClub ? link(m.club, d.currentClub, '/clubs') : null;
+const nation = d.nationalTeam ? link(m.nation, d.nationalTeam, '/nations') : null;
+// live headshot + number from the roster
+let livePlayer: any = null;
+if (club) { const league = m.league.get(club.data.league); const live = liveLeagues().find((l) => l.slug === league?.data.liveSlug); const team = live ? findTeam(live, [club.data.name, club.data.fullName ?? '']) : undefined; const n = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z]/g, ''); livePlayer = team?.squad.find((p) => n(p.name) === n(d.name) || n(p.fullName) === n(d.fullName ?? d.name) || n(p.name) === n(d.fullName ?? '')) ?? null; }
+const age = d.born ? Math.floor((Date.now() - new Date(d.born).getTime()) / 31557600000) : null;
+const clubsWhereLegend = m.clubs.filter((c) => c.data.legends.includes(slugOf(entry)) || c.data.currentStars.includes(slugOf(entry)));
+---
+<Base title={d.name} description={d.summary}>
+  <div class="page-head">
+    {livePlayer?.headshot ? <img class="headshot" src={livePlayer.headshot} alt={d.name} style="background:#fff" /> : <div class="headshot" style="display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--accent)">{d.name.split(' ').map((w: string) => w[0]).join('').slice(0, 2)}</div>}
+    <div>
+      <span class="eyebrow">{d.position} · {d.nationality}{d.status === 'retired' ? ' · retired' : ''}{d.gender === 'women' ? " · women's" : ''}</span>
+      <h1>{d.name}</h1>
+      <p class="sub">{d.summary}</p>
+    </div>
+  </div>
+  {d.tags.length > 0 && <div class="tags">{d.tags.map((t: string) => <span>{t}</span>)}</div>}
+
+  <div class="two">
+    <div>
+      {d.style && (<div class="panel" style="margin-bottom:1.5rem;border-color:var(--accent)"><h3>How {d.gender === 'women' ? 'she' : 'he'} plays</h3><p style="margin:0">{d.style}</p></div>)}
+      <article class="prose"><Content /></article>
+      {d.career.length > 0 && (
+        <><h2>Career</h2><div class="table-wrap"><table><thead><tr><th>Team</th><th>Years</th><th class="num">Apps</th><th class="num">Goals</th><th>Note</th></tr></thead><tbody>
+          {d.career.map((c: any) => <tr><td>{c.team}</td><td>{c.years}</td><td class="num">{c.apps ?? ''}</td><td class="num">{c.goals ?? ''}</td><td class="muted small">{c.note ?? ''}</td></tr>)}
+        </tbody></table></div></>
+      )}
+    </div>
+    <aside class="side">
+      <div class="panel"><h3>Profile</h3>
+        <dl class="facts">
+          {d.fullName && <><dt>Full name</dt><dd>{d.fullName}</dd></>}
+          {d.born && <><dt>Born</dt><dd>{d.born}{age && d.status === 'active' ? ` (${age})` : ''}</dd></>}
+          {d.died && <><dt>Died</dt><dd>{d.died}</dd></>}
+          <dt>Position</dt><dd>{d.position}</dd>
+          {d.foot && <><dt>Foot</dt><dd>{d.foot}</dd></>}
+          {d.height && <><dt>Height</dt><dd>{d.height}</dd></>}
+          {clubLink && <><dt>Club</dt><dd>{clubLink.exists ? <a href={clubLink.href}>{d.currentClubName ?? clubLink.label}</a> : d.currentClubName ?? clubLink.label}</dd></>}
+          {(livePlayer?.number ?? d.number) && <><dt>Number</dt><dd>{livePlayer?.number ?? d.number}</dd></>}
+          {nation && <><dt>National team</dt><dd>{nation.exists ? <a href={nation.href}>{nation.label}</a> : nation.label}</dd></>}
+        </dl>
+      </div>
+      {d.honours.length > 0 && (<div class="panel"><h3>Honours</h3><ul style="margin:0;padding-left:1.1rem">{d.honours.map((h: string) => <li>{h}</li>)}</ul></div>)}
+      <Videos videos={d.videos} title="Best plays on YouTube" />
+      {d.related.length > 0 && <div class="panel"><Chips title="Related players" slugs={d.related} map={m.player} base="/players" /></div>}
+      {clubsWhereLegend.length > 0 && <div class="panel"><Chips title="Club pages" slugs={clubsWhereLegend.map(slugOf)} map={m.club} base="/clubs" /></div>}
+    </aside>
+  </div>
+</Base>

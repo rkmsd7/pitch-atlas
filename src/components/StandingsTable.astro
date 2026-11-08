@@ -1,0 +1,29 @@
+---
+import type { LiveLeague } from '../lib/live';
+import { zoneClass } from '../lib/live';
+interface Props { league: LiveLeague; limit?: number; highlight?: string; clubLinks?: Map<string, string>; compact?: boolean }
+const { league, limit, highlight, clubLinks, compact = false } = Astro.props;
+---
+{league.groups.map((g) => (
+  <div class="table-wrap" style="margin-bottom:1rem">
+    {league.groups.length > 1 && <div style="padding:.5rem .8rem;font-weight:600;border-bottom:1px solid var(--line)">{g.name}</div>}
+    <table>
+      <thead><tr><th>#</th><th>Team</th><th class="num">P</th>{!compact && <><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">GF</th><th class="num">GA</th></>}<th class="num">GD</th><th class="num">Pts</th></tr></thead>
+      <tbody>
+        {(limit ? g.rows.slice(0, limit) : g.rows).map((r) => {
+          const href = clubLinks?.get(r.teamId);
+          return (
+            <tr class={zoneClass(r.note)} style={highlight === r.teamId ? 'background:rgba(184,242,90,.08)' : undefined} title={r.note ?? undefined}>
+              <td class="num">{r.rank}</td>
+              <td><span class="team-cell">{r.logo && <img src={r.logo} alt="" loading="lazy" />}{href ? <a href={href}>{r.team}</a> : r.team}</span></td>
+              <td class="num">{r.played}</td>
+              {!compact && <><td class="num">{r.won}</td><td class="num">{r.drawn}</td><td class="num">{r.lost}</td><td class="num">{r.gf}</td><td class="num">{r.ga}</td></>}
+              <td class="num">{r.gd > 0 ? `+${r.gd}` : r.gd}</td>
+              <td class="num pts">{r.points}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+))}

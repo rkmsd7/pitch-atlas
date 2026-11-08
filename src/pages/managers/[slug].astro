@@ -1,0 +1,46 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Videos from '../../components/Videos.astro';
+import Chips from '../../components/Chips.astro';
+import { maps, slugOf, link } from '../../lib/content';
+export async function getStaticPaths() { const m = await maps(); return m.managers.map((g) => ({ params: { slug: slugOf(g) }, props: { entry: g } })); }
+const { entry } = Astro.props;
+const d = entry.data;
+const m = await maps();
+const { Content } = await render(entry);
+const team = d.currentTeamSlug ? link(d.currentTeamType === 'nation' ? m.nation : m.club, d.currentTeamSlug, d.currentTeamType === 'nation' ? '/nations' : '/clubs') : null;
+const philosophy = d.philosophy ? link(m.tactic, d.philosophy, '/tactics') : null;
+const clubsManaged = m.clubs.filter((c) => c.data.manager === slugOf(entry));
+---
+<Base title={d.name} description={d.summary}>
+  <div class="page-head">
+    <div class="headshot" style="display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--accent)">{d.name.split(' ').map((w: string) => w[0]).join('').slice(0, 2)}</div>
+    <div>
+      <span class="eyebrow">Manager · {d.nationality}{d.status === 'retired' ? ' · retired' : ''}</span>
+      <h1>{d.name}</h1>
+      <p class="sub">{d.summary}</p>
+    </div>
+  </div>
+  <div class="two">
+    <div>
+      <article class="prose"><Content /></article>
+      {d.career.length > 0 && (<><h2>Coaching career</h2><div class="table-wrap"><table><thead><tr><th>Team</th><th>Years</th><th>Note</th></tr></thead><tbody>{d.career.map((c: any) => <tr><td>{c.team}</td><td>{c.years}</td><td class="muted small">{c.note ?? ''}</td></tr>)}</tbody></table></div></>)}
+    </div>
+    <aside class="side">
+      <div class="panel"><h3>Profile</h3>
+        <dl class="facts">
+          {d.born && <><dt>Born</dt><dd>{d.born}</dd></>}
+          {d.died && <><dt>Died</dt><dd>{d.died}</dd></>}
+          {(team || d.currentTeam) && <><dt>Current</dt><dd>{team?.exists ? <a href={team.href}>{d.currentTeam ?? team.label}</a> : d.currentTeam ?? team?.label}</dd></>}
+          {clubsManaged.length > 0 && !team?.exists && <><dt>Club</dt><dd><a href={`/clubs/${slugOf(clubsManaged[0])}`}>{clubsManaged[0].data.name}</a></dd></>}
+          {d.formation && <><dt>Formation</dt><dd>{d.formation}</dd></>}
+          {philosophy && <><dt>Philosophy</dt><dd>{philosophy.exists ? <a href={philosophy.href}>{philosophy.label}</a> : philosophy.label}</dd></>}
+        </dl>
+      </div>
+      {d.honours.length > 0 && (<div class="panel"><h3>Honours</h3><ul style="margin:0;padding-left:1.1rem">{d.honours.map((h: string) => <li>{h}</li>)}</ul></div>)}
+      {d.tactics.length > 0 && <div class="panel"><Chips title="Tactical ideas" slugs={d.tactics} map={m.tactic} base="/tactics" /></div>}
+      <Videos videos={d.videos} />
+    </aside>
+  </div>
+</Base>

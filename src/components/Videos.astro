@@ -1,0 +1,10 @@
+---
+interface Props { videos: { title: string; url: string }[]; title?: string }
+const { videos, title = 'Watch' } = Astro.props;
+---
+{videos.length > 0 && (
+  <div class="panel">
+    <h3>{title}</h3>
+    <div class="videos">{videos.map((v) => <a href={v.url} target="_blank" rel="noopener"><span class="yt"></span>{v.title}</a>)}</div>
+  </div>
+)}

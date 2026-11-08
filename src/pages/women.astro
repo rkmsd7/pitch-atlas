@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import StandingsTable from '../components/StandingsTable.astro';
+import FixtureList from '../components/FixtureList.astro';
+import { maps, slugOf } from '../lib/content';
+import { getLive } from '../lib/live';
+const m = await maps();
+const leagues = m.leagues.filter((l) => l.data.gender === 'women').sort((a, b) => a.data.order - b.data.order);
+const nations = m.nations.filter((n) => n.data.gender === 'women').sort((a, b) => (a.data.fifaRanking ?? 999) - (b.data.fifaRanking ?? 999));
+const clubs = m.clubs.filter((c) => leagues.some((l) => slugOf(l) === c.data.league));
+const players = m.players.filter((p) => p.data.gender === 'women').sort((a, b) => a.data.name.localeCompare(b.data.name));
+const tournaments = m.tournaments.filter((t) => t.data.gender === 'women').sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Women's football">
+  <section class="hero"><span class="eyebrow">Women's game</span><h1>Women's football</h1><p class="lead">Live WSL and NWSL tables, the World Cup, Euros and Olympics, the great clubs and the players redefining the sport.</p></section>
+  <div class="section-head"><h2>Tables</h2><a href="/leagues">All leagues →</a></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(340px,1fr))">{leagues.map((l) => { const live = getLive(l.data.liveSlug); return (<a class="card" href={`/leagues/${slugOf(l)}`}><h3>{l.data.name}</h3>{live ? <StandingsTable league={{ ...live, groups: [live.groups[0]] }} limit={6} compact /> : <div class="meta">{l.data.summary}</div>}</a>); })}</div>
+  {tournaments.length > 0 && (<><div class="section-head"><h2>Tournaments</h2></div><div class="grid tight">{tournaments.map((t) => <a class="card" href={`/tournaments/${slugOf(t)}`}><h3>{t.data.name}</h3><div class="meta">Holders: {t.data.currentChampion ?? '—'}</div></a>)}</div></>)}
+  {nations.length > 0 && (<><div class="section-head"><h2>National teams</h2></div><div class="grid tight">{nations.map((n) => <a class="card" href={`/nations/${slugOf(n)}`}><h3>{n.data.name}</h3><div class="meta">{n.data.fifaRanking ? `FIFA #${n.data.fifaRanking} · ` : ''}{n.data.coach ?? ''}</div></a>)}</div></>)}
+  {clubs.length > 0 && (<><div class="section-head"><h2>Clubs</h2></div><div class="grid tight">{clubs.map((c) => <a class="card" href={`/clubs/${slugOf(c)}`}><h3>{c.data.name}</h3><div class="meta">{c.data.country}</div></a>)}</div></>)}
+  {players.length > 0 && (<><div class="section-head"><h2>Players</h2></div><div class="grid tight">{players.map((p) => <a class="card" href={`/players/${slugOf(p)}`}><h3>{p.data.name}</h3><div class="meta">{p.data.position} · {p.data.currentClubName ?? p.data.nationality}</div></a>)}</div></>)}
+</Base>

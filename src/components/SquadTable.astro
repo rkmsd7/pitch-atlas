@@ -1,0 +1,29 @@
+---
+import type { LivePlayer } from '../lib/live';
+interface Props { squad: LivePlayer[]; playerLinks?: Map<string, string> }
+const { squad, playerLinks } = Astro.props;
+const order: Record<string, number> = { G: 0, D: 1, M: 2, F: 3 };
+const groups = ['Goalkeepers', 'Defenders', 'Midfielders', 'Forwards'];
+const sorted = [...squad].sort((a, b) => (order[a.position ?? ''] ?? 4) - (order[b.position ?? ''] ?? 4) || Number(a.number ?? 99) - Number(b.number ?? 99));
+const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z]/g, '');
+---
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Player</th><th>Pos</th><th>Nation</th><th class="num">Age</th><th>Height</th></tr></thead>
+    <tbody>
+      {sorted.map((p) => {
+        const href = playerLinks?.get(norm(p.name)) ?? playerLinks?.get(norm(p.fullName));
+        return (
+          <tr>
+            <td class="num">{p.number ?? ''}</td>
+            <td><span class="team-cell">{p.headshot ? <img src={p.headshot} alt="" loading="lazy" style="width:26px;height:26px;border-radius:50%;object-fit:cover;background:#fff" /> : <span style="width:26px;height:26px;border-radius:50%;background:var(--bg-3);display:inline-block"></span>}{href ? <a href={href}><strong>{p.name}</strong></a> : p.name}</span></td>
+            <td>{groups[order[p.position ?? ''] ?? 0]?.slice(0, -1) ?? p.positionName}</td>
+            <td><span class="team-cell">{p.flag && <img src={p.flag} alt="" loading="lazy" style="width:18px;height:12px;border-radius:2px" />}{p.nationality ?? ''}</span></td>
+            <td class="num">{p.age ?? ''}</td>
+            <td>{p.height ?? ''}</td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>

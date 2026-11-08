@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { link } from '../lib/content';
+interface Props { slugs: string[]; map: Map<string, CollectionEntry<any>>; base: string; title?: string; onlyExisting?: boolean }
+const { slugs, map, base, title, onlyExisting = false } = Astro.props;
+const items = slugs.map((s) => link(map, s, base)).filter((l) => !onlyExisting || l.exists);
+---
+{items.length > 0 && (
+  <div>
+    {title && <h3 style="font-size:1rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:0 0 .5rem">{title}</h3>}
+    <div class="chip-list">{items.map((l) => l.exists ? <a href={l.href}>{l.label}</a> : <span title="Profile coming soon">{l.label}</span>)}</div>
+  </div>
+)}

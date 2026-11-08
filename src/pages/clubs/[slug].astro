@@ -1,0 +1,102 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import StandingsTable from '../../components/StandingsTable.astro';
+import FixtureList from '../../components/FixtureList.astro';
+import SquadTable from '../../components/SquadTable.astro';
+import PositionsChart from '../../components/PositionsChart.astro';
+import Videos from '../../components/Videos.astro';
+import Chips from '../../components/Chips.astro';
+import { maps, slugOf, link } from '../../lib/content';
+import { liveLeagues, findTeam, teamEvents, rowFor, liveManager, type LiveLeague, type LiveTeam } from '../../lib/live';
+
+export async function getStaticPaths() {
+  const m = await maps();
+  const paths: any[] = [];
+  const matched = new Set<string>();
+  for (const c of m.clubs) {
+    const league = m.league.get(c.data.league);
+    const live = liveLeagues().find((l) => l.slug === league?.data.liveSlug);
+    const team = live ? findTeam(live, [c.data.name, c.data.fullName ?? '', ...(c.data.nicknames ?? [])]) : undefined;
+    if (team) matched.add(`${live!.slug}:${team.id}`);
+    paths.push({ params: { slug: slugOf(c) }, props: { entry: c, liveSlug: live?.slug, teamId: team?.id } });
+  }
+  for (const live of liveLeagues()) for (const t of live.teams) if (!matched.has(`${live.slug}:${t.id}`)) paths.push({ params: { slug: `${live.slug}--${t.slug}` }, props: { entry: null, liveSlug: live.slug, teamId: t.id } });
+  return paths;
+}
+const { entry, liveSlug, teamId } = Astro.props as { entry: any; liveSlug?: string; teamId?: string };
+const m = await maps();
+const live: LiveLeague | undefined = liveLeagues().find((l) => l.slug === liveSlug);
+const team: LiveTeam | undefined = live?.teams.find((t) => t.id === teamId);
+const row = live && teamId ? rowFor(live, teamId) : undefined;
+const { fixtures, results } = live && teamId ? teamEvents(live, teamId) : { fixtures: [], results: [] };
+const Content = entry ? (await render(entry)).Content : null;
+const data = entry?.data;
+const name = data?.name ?? team?.name ?? 'Club';
+const leagueEntry = m.league.get(data?.league ?? '') ?? m.leagues.find((l) => l.data.liveSlug === liveSlug);
+const manager = data?.manager ? link(m.manager, data.manager, '/managers') : null;
+const playerLinks = new Map<string, string>();
+const normName = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z]/g, '');
+for (const p of m.players) { playerLinks.set(normName(p.data.name), `/players/${slugOf(p)}`); if (p.data.fullName) playerLinks.set(normName(p.data.fullName), `/players/${slugOf(p)}`); }
+const clubLinks = new Map<string, string>();
+if (live) { for (const c of m.clubs.filter((c) => m.league.get(c.data.league)?.data.liveSlug === live.slug)) { const t = findTeam(live, [c.data.name, c.data.fullName ?? '', ...(c.data.nicknames ?? [])]); if (t) clubLinks.set(t.id, `/clubs/${slugOf(c)}`); } for (const t of live.teams) if (!clubLinks.has(t.id)) clubLinks.set(t.id, `/clubs/${live.slug}--${t.slug}`); }
+const c1 = data?.colors?.[0] ?? team?.color ?? '#b8f25a', c2 = data?.colors?.[1] ?? team?.altColor ?? '#5ad1b8';
+const playersAtClub = entry ? m.players.filter((p) => p.data.currentClub === slugOf(entry)) : [];
+const managersHere = entry ? m.managers.filter((g) => g.data.currentTeamSlug === slugOf(entry) && g.data.status === 'active') : [];
+const lm = liveManager(liveSlug, teamId);
+const coachHref = managersHere[0] ? `/managers/${slugOf(managersHere[0])}` : manager?.exists ? manager.href : null;
+const coachName = managersHere[0]?.data.name ?? (manager?.exists ? manager.label : null) ?? lm?.name ?? (manager ? manager.label : null);
+---
+<Base title={name} description={data?.summary ?? `${name}: current squad, results and league position.`}>
+  <div class="page-head">
+    {team?.logo && <img class="crest" src={team.logo} alt={`${name} crest`} />}
+    <div>
+      <span class="eyebrow">{leagueEntry ? <a href={`/leagues/${slugOf(leagueEntry)}`}>{leagueEntry.data.name}</a> : live?.name}{data?.country ? ` · ${data.country}` : ''}{data?.founded ? ` · est. ${data.founded}` : ''}</span>
+      <h1>{name}</h1>
+      <p class="sub">{data?.summary ?? `${team?.location ?? ''}`}</p>
+    </div>
+  </div>
+  <div class="stripe" style={`--c1:${c1};--c2:${c2}`}></div>
+
+  <div class="stat-row">
+    {row && <div class="stat"><b>{row.rank}{['st','nd','rd'][((row.rank + 90) % 100 - 10) % 10 - 1] ?? 'th'}</b><span>{live?.season}</span></div>}
+    {row && <div class="stat"><b>{row.points}</b><span>points from {row.played}</span></div>}
+    {row && <div class="stat"><b>{row.won}-{row.drawn}-{row.lost}</b><span>W-D-L</span></div>}
+    {row && <div class="stat"><b>{row.gd > 0 ? '+' : ''}{row.gd}</b><span>goal difference</span></div>}
+    {data?.stadium && <div class="stat"><b style="font-size:1rem">{data.stadium}</b><span>{data.capacity ? data.capacity.toLocaleString() + ' capacity' : 'stadium'}</span></div>}
+    {coachName && <div class="stat"><b style="font-size:1rem">{coachHref ? <a href={coachHref}>{coachName}</a> : coachName}</b><span>head coach</span></div>}
+  </div>
+
+  <div class="two">
+    <div>
+      {data?.positions?.length > 1 && (<><h2>League finishes</h2><PositionsChart positions={data.positions} /><p class="small muted">League finish by season (1 = champions). Hover a point for detail.</p></>)}
+      {Content ? <article class="prose"><Content /></article> : (
+        <div class="note">No written history yet for {name}. This page is generated from live data. Add <code>src/content/clubs/&lt;slug&gt;.md</code> to give it one.</div>
+      )}
+
+      {team && team.squad.length > 0 && (<><div class="section-head"><h2>Current squad</h2><span class="updated">{live?.season} · updated {new Date(live!.fetchedAt).toUTCString().slice(0, 16)}</span></div><SquadTable squad={team.squad} playerLinks={playerLinks} /></>)}
+
+      {live && (<div class="two" style="margin-top:2rem"><div><h2>Next matches</h2><FixtureList events={fixtures} limit={8} /></div><div><h2>Recent results</h2><FixtureList events={results} limit={8} /></div></div>)}
+      {live && row && (<><h2>League table</h2><StandingsTable league={live} highlight={teamId} clubLinks={clubLinks} compact /></>)}
+    </div>
+    <aside class="side">
+      {data && (
+        <div class="panel"><h3>Club facts</h3>
+          <dl class="facts">
+            {data.fullName && <><dt>Full name</dt><dd>{data.fullName}</dd></>}
+            {data.city && <><dt>City</dt><dd>{data.city}</dd></>}
+            {data.nicknames?.length > 0 && <><dt>Nicknames</dt><dd>{data.nicknames.join(', ')}</dd></>}
+            {data.founded && <><dt>Founded</dt><dd>{data.founded}</dd></>}
+            {data.stadium && <><dt>Stadium</dt><dd>{data.stadium}</dd></>}
+            {coachName && <><dt>Manager</dt><dd>{coachHref ? <a href={coachHref}>{coachName}</a> : coachName}</dd></>}
+          </dl>
+        </div>
+      )}
+      {data?.honours?.length > 0 && (<div class="panel"><h3>Honours</h3><div class="honours">{data.honours.map((h: any) => <div><span>{h.title}{h.latest ? <span class="muted small"> · last {h.latest}</span> : null}</span><b>{h.count}</b></div>)}</div></div>)}
+      {(data?.currentStars?.length > 0 || playersAtClub.length > 0) && (<div class="panel"><Chips title="Current stars" slugs={[...new Set([...(data?.currentStars ?? []), ...playersAtClub.map(slugOf)])]} map={m.player} base="/players" /></div>)}
+      {data?.legends?.length > 0 && (<div class="panel"><Chips title="Legends" slugs={data.legends} map={m.player} base="/players" /></div>)}
+      {data?.rivals?.length > 0 && (<div class="panel"><Chips title="Rivals" slugs={data.rivals} map={m.club} base="/clubs" /></div>)}
+      {data?.videos && <Videos videos={data.videos} />}
+    </aside>
+  </div>
+</Base>

@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import StandingsTable from '../components/StandingsTable.astro';
+import FixtureList from '../components/FixtureList.astro';
+import { maps, slugOf } from '../lib/content';
+import { getLive, allFixtures, findTeam } from '../lib/live';
+const m = await maps();
+const leagues = m.leagues.filter((l) => l.data.gender === 'men').sort((a, b) => a.data.order - b.data.order);
+const top = leagues.filter((l) => ['premier-league', 'la-liga', 'serie-a', 'bundesliga', 'ligue-1', 'champions-league'].includes(slugOf(l)));
+const fixtures = allFixtures(10);
+const clubLinks = (leagueSlug: string) => {
+  const live = getLive(leagueSlug); const map = new Map<string, string>();
+  if (!live) return map;
+  for (const c of m.clubs.filter((c) => c.data.league === leagueSlug)) { const t = findTeam(live, [c.data.name, c.data.fullName ?? '', ...(c.data.nicknames ?? [])]); if (t) map.set(t.id, `/clubs/${slugOf(c)}`); }
+  for (const t of live.teams) if (![...map.keys()].includes(t.id)) map.set(t.id, `/clubs/${leagueSlug}--${t.slug}`);
+  return map;
+};
+const featuredPlayers = m.players.filter((p) => p.data.status === 'active').sort(() => 0.5 - Math.random()).slice(0, 8);
+const tournaments = m.tournaments.sort((a, b) => a.data.order - b.data.order).slice(0, 8);
+const tactics = m.tactics.sort((a, b) => a.data.order - b.data.order).slice(0, 8);
+const counts = { clubs: m.clubs.length, players: m.players.length, managers: m.managers.length, nations: m.nations.length };
+---
+<Base title="World football, one atlas">
+  <section class="hero">
+    <span class="eyebrow">Leagues · Clubs · Players · Managers · Tournaments · Tactics</span>
+    <h1>Every league. Every club. Every story.</h1>
+    <p class="lead">Live tables and fixtures for 19 competitions, deep histories of clubs and national teams, player profiles with playing-style breakdowns and highlight reels, manager philosophies, and the tactical ideas that shaped the game.</p>
+    <div class="stat-row">
+      <div class="stat"><b>{counts.clubs}</b><span>club histories</span></div>
+      <div class="stat"><b>{counts.players}</b><span>player profiles</span></div>
+      <div class="stat"><b>{counts.managers}</b><span>manager profiles</span></div>
+      <div class="stat"><b>{counts.nations}</b><span>national teams</span></div>
+      <div class="stat"><b>19</b><span>live tables</span></div>
+    </div>
+  </section>
+
+  <div class="section-head"><h2>Tables right now</h2><a href="/leagues">All leagues →</a></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(340px,1fr))">
+    {top.map((l) => { const live = getLive(l.data.liveSlug); return live ? (
+      <div class="card">
+        <h3><a href={`/leagues/${slugOf(l)}`}>{l.data.name}</a> <span class="meta">{live.season}</span></h3>
+        <StandingsTable league={{ ...live, groups: [live.groups[0]] }} limit={6} compact clubLinks={clubLinks(slugOf(l))} />
+      </div>) : null; })}
+  </div>
+
+  <div class="two" style="margin-top:2rem">
+    <div>
+      <div class="section-head"><h2>Coming up</h2><a href="/fixtures">Full fixture list →</a></div>
+      <FixtureList events={fixtures} />
+    </div>
+    <div>
+      <div class="section-head"><h2>Tournaments</h2><a href="/tournaments">All →</a></div>
+      <div class="grid tight">{tournaments.map((t) => <a class="card" href={`/tournaments/${slugOf(t)}`}><h3>{t.data.name}</h3><div class="meta">Holders: {t.data.currentChampion ?? '—'}</div></a>)}</div>
+    </div>
+  </div>
+
+  <div class="section-head"><h2>Players in focus</h2><a href="/players">All players →</a></div>
+  <div class="grid tight">{featuredPlayers.map((p) => <a class="card" href={`/players/${slugOf(p)}`}><h3>{p.data.name}</h3><div class="meta">{p.data.position} · {p.data.currentClubName ?? p.data.nationality}</div></a>)}</div>
+
+  <div class="section-head"><h2>Philosophies</h2><a href="/tactics">All tactics →</a></div>
+  <div class="grid tight">{tactics.map((t) => <a class="card" href={`/tactics/${slugOf(t)}`}><h3>{t.data.name}</h3><div class="meta">{t.data.formation ?? t.data.era ?? ''}</div></a>)}</div>
+
+  <div class="section-head"><h2>Women's game</h2><a href="/women">Women's hub →</a></div>
+  <p class="muted">WSL and NWSL live tables, national teams, clubs and player profiles from Bonmatí to Marta.</p>
+</Base>

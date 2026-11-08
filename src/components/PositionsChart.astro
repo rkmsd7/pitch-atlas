@@ -1,0 +1,19 @@
+---
+interface Props { positions: { season: string; position: number; competition?: string; note?: string }[]; max?: number }
+const { positions } = Astro.props;
+const pts = [...positions].reverse(); // oldest → newest
+const W = 720, H = 220, padL = 36, padR = 16, padT = 18, padB = 40;
+const maxPos = Math.max(20, ...pts.map((p) => p.position));
+const x = (i: number) => padL + (i * (W - padL - padR)) / Math.max(1, pts.length - 1);
+const y = (p: number) => padT + ((p - 1) * (H - padT - padB)) / (maxPos - 1);
+const path = pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.position).toFixed(1)}`).join(' ');
+const ticks = [1, 4, 10, 17, maxPos].filter((v, i, a) => a.indexOf(v) === i);
+const step = Math.ceil(pts.length / 10);
+---
+{pts.length > 1 && (
+  <svg class="pos-chart" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="League finishing positions by season">
+    {ticks.map((t) => <g><line x1={padL} x2={W - padR} y1={y(t)} y2={y(t)} stroke="#243530" stroke-dasharray="3 4" /><text x={padL - 8} y={y(t) + 4} fill="#9fb0a8" font-size="10" text-anchor="end">{t}</text></g>)}
+    <path d={path} fill="none" stroke="#b8f25a" stroke-width="2.5" stroke-linejoin="round" />
+    {pts.map((p, i) => <g><circle cx={x(i)} cy={y(p.position)} r={p.position === 1 ? 5 : 3.5} fill={p.position === 1 ? '#ffd166' : '#5ad1b8'}><title>{p.season}: {p.position}{p.competition ? ` (${p.competition})` : ''}{p.note ? ` · ${p.note}` : ''}</title></circle>{i % step === 0 || i === pts.length - 1 ? <text x={x(i)} y={H - 14} fill="#9fb0a8" font-size="10" text-anchor="middle">{p.season}</text> : null}</g>)}
+  </svg>
+)}

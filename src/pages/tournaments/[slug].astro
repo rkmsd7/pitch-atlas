@@ -1,0 +1,30 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+export async function getStaticPaths() { const m = await maps(); return m.tournaments.map((t) => ({ params: { slug: slugOf(t) }, props: { entry: t } })); }
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const tally = new Map<string, number>();
+for (const e of d.editions) tally.set(e.winner, (tally.get(e.winner) ?? 0) + 1);
+const top = [...tally.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
+---
+<Base title={d.name} description={d.summary}>
+  <div class="page-head"><div><span class="eyebrow">{d.organiser ?? ''}{d.founded ? ` · since ${d.founded}` : ''}{d.gender === 'women' ? " · women's" : ''}</span><h1>{d.name}</h1><p class="sub">{d.summary}</p></div></div>
+  <div class="stat-row">
+    {d.currentChampion && <div class="stat"><b style="font-size:1.05rem">{d.currentChampion}</b><span>holders</span></div>}
+    {d.mostTitles && <div class="stat"><b style="font-size:1.05rem">{d.mostTitles}</b><span>most titles</span></div>}
+    <div class="stat"><b>{d.editions.length}</b><span>editions listed</span></div>
+    {d.nextEdition && <div class="stat"><b style="font-size:1rem">{d.nextEdition}</b><span>next edition</span></div>}
+  </div>
+  <div class="two">
+    <div>
+      <article class="prose"><Content /></article>
+      {d.editions.length > 0 && (<><h2>All editions</h2><div class="table-wrap"><table><thead><tr><th>Year</th><th>Host</th><th>Winner</th><th>Runner-up</th><th>Score</th><th>Note</th></tr></thead><tbody>{d.editions.map((e: any) => <tr><td>{e.year}</td><td>{e.host ?? ''}</td><td><strong>{e.winner}</strong></td><td>{e.runnerUp ?? ''}</td><td>{e.score ?? ''}</td><td class="muted small">{e.note ?? ''}</td></tr>)}</tbody></table></div></>)}
+    </div>
+    <aside class="side">
+      {top.length > 0 && <div class="panel"><h3>Roll of honour</h3><div class="honours">{top.map(([n, c]) => <div><span>{n}</span><b>{c}</b></div>)}</div></div>}
+    </aside>
+  </div>
+</Base>

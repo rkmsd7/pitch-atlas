@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+import { liveLeagues, findTeam } from '../../lib/live';
+const m = await maps();
+const leagues = m.leagues.sort((a, b) => a.data.order - b.data.order);
+const groups = leagues.map((l) => {
+  const ls = slugOf(l); const live = liveLeagues().find((x) => x.slug === l.data.liveSlug);
+  const written = m.clubs.filter((c) => c.data.league === ls);
+  const matched = new Set<string>();
+  const items = written.map((c) => { const t = live ? findTeam(live, [c.data.name, c.data.fullName ?? '', ...(c.data.nicknames ?? [])]) : undefined; if (t) matched.add(t.id); return { name: c.data.name, href: `/clubs/${slugOf(c)}`, logo: t?.logo ?? null, written: true }; });
+  for (const t of live?.teams ?? []) if (!matched.has(t.id)) items.push({ name: t.name, href: `/clubs/${ls}--${t.slug}`, logo: t.logo, written: false });
+  return { l, items: items.sort((a, b) => a.name.localeCompare(b.name)) };
+}).filter((g) => g.items.length);
+---
+<Base title="Clubs">
+  <h1>Clubs</h1>
+  <p class="muted">Every club in every tracked league has a page with its current squad, results and league position. Clubs with a full written history are marked with a dot.</p>
+  <div class="tabs">{groups.map((g) => <a href={`#${slugOf(g.l)}`}>{g.l.data.shortName ?? g.l.data.name}</a>)}</div>
+  {groups.map((g) => (
+    <section id={slugOf(g.l)}>
+      <div class="section-head"><h2><a href={`/leagues/${slugOf(g.l)}`}>{g.l.data.name}</a></h2><span class="muted small">{g.items.length} clubs</span></div>
+      <div class="grid tight">{g.items.map((c) => <a class="card" href={c.href}>{c.logo && <img class="logo" src={c.logo} alt="" loading="lazy" />}<h3>{c.written && <span style="color:var(--accent)">● </span>}{c.name}</h3></a>)}</div>
+    </section>
+  ))}
+</Base>

@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+const m = await maps();
+const all = m.nations.sort((a, b) => (a.data.fifaRanking ?? 999) - (b.data.fifaRanking ?? 999) || a.data.name.localeCompare(b.data.name));
+const confs = ['UEFA', 'CONMEBOL', 'CONCACAF', 'AFC', 'CAF', 'OFC'];
+---
+<Base title="National teams">
+  <h1>National teams</h1>
+  <p class="muted">Men's and women's national sides: history, philosophy, tournament records, current coach and squad, and the legends who defined them.</p>
+  {(['men', 'women'] as const).map((g) => (<><h2>{g === 'men' ? "Men's" : "Women's"}</h2>{confs.map((c) => { const list = all.filter((n) => n.data.gender === g && n.data.confederation.toUpperCase().includes(c)); return list.length > 0 && (<><h3>{c}</h3><div class="grid tight">{list.map((n) => <a class="card" href={`/nations/${slugOf(n)}`}><h3>{n.data.name}</h3><div class="meta">{n.data.fifaRanking ? `FIFA #${n.data.fifaRanking} · ` : ''}{n.data.coach ?? ''}</div></a>)}</div></>); })}</>))}
+</Base>

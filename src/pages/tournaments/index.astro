@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+const m = await maps();
+const all = m.tournaments.sort((a, b) => a.data.order - b.data.order);
+const groups = [['World Cups', 'world'], ['Olympic football', 'olympic'], ['Continental championships', 'continental'], ['Club competitions', 'club']] as const;
+---
+<Base title="Tournaments">
+  <h1>Tournaments</h1>
+  <p class="muted">World Cups, Olympics, continental championships and club competitions: every edition, every winner, the greatest moments and what comes next.</p>
+  {groups.map(([title, type]) => { const list = all.filter((t) => t.data.type === type); return list.length > 0 && (
+    <><h2>{title}</h2><div class="grid">{list.map((t) => <a class="card" href={`/tournaments/${slugOf(t)}`}>{t.data.gender === 'women' && <span class="badge women">Women's</span>}<h3>{t.data.name}</h3><div class="meta">{t.data.summary}</div><div class="meta" style="margin-top:.4rem">Holders: <strong>{t.data.currentChampion ?? '—'}</strong>{t.data.nextEdition ? ` · Next: ${t.data.nextEdition}` : ''}</div></a>)}</div></>
+  ); })}
+</Base>

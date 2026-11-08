@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+const m = await maps();
+const players = m.players.sort((a, b) => a.data.name.localeCompare(b.data.name));
+const nations = [...new Set(players.map((p) => p.data.nationality))].sort();
+const posGroup = (p: string) => /keeper|GK/i.test(p) ? 'Goalkeeper' : /back|defender|centre-half|CB|LB|RB/i.test(p) ? 'Defender' : /wing|forward|striker|centre-forward|number 9|false 9/i.test(p) ? 'Forward' : 'Midfielder';
+---
+<Base title="Players">
+  <h1>Players</h1>
+  <p class="muted">{players.length} profiles: how they play, how they evolved, their best moments and where to watch them. Filter by era, position or nation.</p>
+  <div class="filters">
+    <input id="f-q" type="search" placeholder="Name…" />
+    <select id="f-status"><option value="">All eras</option><option value="active">Active</option><option value="retired">Legends (retired)</option></select>
+    <select id="f-gender"><option value="">Men & women</option><option value="men">Men</option><option value="women">Women</option></select>
+    <select id="f-pos"><option value="">All positions</option><option>Goalkeeper</option><option>Defender</option><option>Midfielder</option><option>Forward</option></select>
+    <select id="f-nat"><option value="">All nations</option>{nations.map((n) => <option>{n}</option>)}</select>
+  </div>
+  <div class="grid tight" id="player-grid">
+    {players.map((p) => <a class="card" href={`/players/${slugOf(p)}`} data-name={p.data.name.toLowerCase()} data-status={p.data.status} data-gender={p.data.gender} data-pos={posGroup(p.data.position)} data-nat={p.data.nationality}><h3>{p.data.name}</h3><div class="meta">{p.data.position}</div><div class="meta">{p.data.nationality}{p.data.currentClubName ? ` · ${p.data.currentClubName}` : p.data.status === 'retired' ? ' · retired' : ''}</div></a>)}
+  </div>
+  <p id="count" class="muted small" style="margin-top:1rem"></p>
+  <script>
+    const g = document.getElementById('player-grid')!; const cards = [...g.children] as HTMLElement[]; const count = document.getElementById('count')!;
+    const ids = ['f-q', 'f-status', 'f-gender', 'f-pos', 'f-nat'].map((i) => document.getElementById(i) as HTMLInputElement);
+    function apply() {
+      const [q, st, ge, po, na] = ids.map((i) => i.value.toLowerCase()); let n = 0;
+      for (const c of cards) { const d = c.dataset; const ok = (!q || d.name!.includes(q)) && (!st || d.status === st) && (!ge || d.gender === ge) && (!po || d.pos!.toLowerCase() === po) && (!na || d.nat!.toLowerCase() === na); c.style.display = ok ? '' : 'none'; if (ok) n++; }
+      count.textContent = `${n} players`;
+    }
+    ids.forEach((i) => i.addEventListener('input', apply)); apply();
+  </script>
+</Base>

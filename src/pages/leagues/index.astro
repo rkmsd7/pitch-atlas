@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+import { getLive } from '../../lib/live';
+const m = await maps();
+const leagues = m.leagues.sort((a, b) => a.data.order - b.data.order);
+const men = leagues.filter((l) => l.data.gender === 'men'), women = leagues.filter((l) => l.data.gender === 'women');
+const Card = (l: typeof leagues[number]) => { const live = getLive(l.data.liveSlug); const leader = live?.groups[0]?.rows[0]; return { l, live, leader }; };
+---
+<Base title="Leagues">
+  <h1>Leagues & competitions</h1>
+  <p class="muted">Domestic leagues across Europe, the Americas, Asia and the Middle East, plus the Champions League. Each page carries the live table, fixtures, results and a history of the competition.</p>
+  <h2>Men's</h2>
+  <div class="grid">{men.map(Card).map(({ l, live, leader }) => <a class="card" href={`/leagues/${slugOf(l)}`}><span class="badge">{l.data.country}</span><h3>{l.data.name}</h3><div class="meta">{l.data.summary}</div>{leader && <div class="meta" style="margin-top:.5rem">Leader: <strong>{leader.team}</strong> · {leader.points} pts · {live?.season}</div>}</a>)}</div>
+  <h2>Women's</h2>
+  <div class="grid">{women.map(Card).map(({ l, live, leader }) => <a class="card" href={`/leagues/${slugOf(l)}`}><span class="badge women">{l.data.country}</span><h3>{l.data.name}</h3><div class="meta">{l.data.summary}</div>{leader && <div class="meta" style="margin-top:.5rem">Leader: <strong>{leader.team}</strong> · {leader.points} pts</div>}</a>)}</div>
+</Base>

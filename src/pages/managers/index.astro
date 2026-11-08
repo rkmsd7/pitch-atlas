@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+const m = await maps();
+const all = m.managers.sort((a, b) => a.data.name.localeCompare(b.data.name));
+const groups = [
+  ['Club managers (current)', all.filter((g) => g.data.status === 'active' && g.data.currentTeamType === 'club' && g.data.currentTeam && !/without|free|unemployed|retired/i.test(g.data.currentTeam))],
+  ['National team coaches', all.filter((g) => g.data.status === 'active' && g.data.currentTeamType === 'nation')],
+  ['Between jobs', all.filter((g) => g.data.status === 'active' && g.data.currentTeamType === 'club' && (!g.data.currentTeam || /without|free|unemployed/i.test(g.data.currentTeam)))],
+  ['Legends', all.filter((g) => g.data.status === 'retired')],
+];
+---
+<Base title="Managers">
+  <h1>Managers</h1>
+  <p class="muted">{all.length} profiles: tactical identity, career, achievements and the storyline that defines each coach right now.</p>
+  {groups.map(([title, list]) => (list as any[]).length > 0 && (
+    <><h2>{title}</h2><div class="grid tight">{(list as any[]).map((g) => <a class="card" href={`/managers/${slugOf(g)}`}><h3>{g.data.name}</h3><div class="meta">{g.data.nationality}{g.data.currentTeam ? ` · ${g.data.currentTeam}` : ''}</div>{g.data.formation && <div class="meta">{g.data.formation}</div>}</a>)}</div></>
+  ))}
+</Base>

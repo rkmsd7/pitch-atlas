@@ -1,0 +1,1505 @@
+{
+ "argentine-primera": {
+  "3": {
+   "name": "Nicolás Diez",
+   "wiki": "Argentinos Juniors"
+  },
+  "4": {
+   "name": "Ricardo Zielinski",
+   "wiki": "Club Atlético Belgrano"
+  },
+  "5": {
+   "name": "Rodolfo Arruabarrena",
+   "wiki": "Boca Juniors"
+  },
+  "8": {
+   "name": "Alexander Medina",
+   "wiki": "Estudiantes de La Plata"
+  },
+  "9": {
+   "name": "Ariel Pereyra",
+   "wiki": "Club de Gimnasia y Esgrima La Plata"
+  },
+  "10": {
+   "name": "Diego Martínez",
+   "wiki": "Club Atlético Huracán"
+  },
+  "11": {
+   "name": "Jadson Viera",
+   "wiki": "Club Atlético Independiente"
+  },
+  "12": {
+   "name": "Mauricio Pellegrino",
+   "wiki": "Club Atlético Lanús"
+  },
+  "14": {
+   "name": "Frank Darío Kudelka",
+   "wiki": "Newell's Old Boys"
+  },
+  "15": {
+   "name": "Sebastián Romero",
+   "wiki": "Racing Club de Avellaneda"
+  },
+  "16": {
+   "name": "Leonardo Ponzio",
+   "wiki": "Club Atlético River Plate",
+   "note": "interim"
+  },
+  "18": {
+   "name": "Rubén Darío Insúa",
+   "wiki": "San Lorenzo de Almagro"
+  },
+  "19": {
+   "name": "Omar De Felippe",
+   "wiki": "Talleres de Córdoba"
+  },
+  "20": {
+   "name": "Leonardo Madelón",
+   "wiki": "Unión de Santa Fe"
+  },
+  "21": {
+   "name": "Guillermo Barros Schelotto",
+   "wiki": "Club Atlético Vélez Sarsfield"
+  },
+  "235": {
+   "name": "Pedro Troglio",
+   "wiki": "Club Atlético Banfield"
+  },
+  "2975": {
+   "name": "Diego Flores",
+   "wiki": "Instituto Atlético Central Córdoba"
+  },
+  "7764": {
+   "name": "Raul Cáceres",
+   "wiki": "Platense F.C."
+  },
+  "7767": {
+   "name": "Diego Dabove",
+   "wiki": "Club Atlético Tigre"
+  },
+  "8950": {
+   "name": "Julio Vaccari",
+   "wiki": "Defensa y Justicia"
+  },
+  "9739": {
+   "name": "Israel Damonte",
+   "wiki": "Club Atlético Aldosivi"
+  },
+  "9744": {
+   "name": "Alfredo Berti",
+   "wiki": "Independiente Rivadavia"
+  },
+  "9785": {
+   "name": "Miguel Abbondándolo",
+   "wiki": "Atlético Tucumán"
+  },
+  "10060": {
+   "name": "Damián Ayude",
+   "wiki": "Barracas Central"
+  },
+  "10158": {
+   "name": "Facundo Sava",
+   "wiki": "Club Atlético Sarmiento"
+  },
+  "11972": {
+   "name": "Darío Franco",
+   "wiki": "Gimnasia y Esgrima de Mendoza"
+  },
+  "11989": {
+   "name": "Sebastián Domínguez",
+   "wiki": "Central Córdoba de Santiago del Estero"
+  },
+  "17702": {
+   "name": "Guillermo Duró",
+   "wiki": "Deportivo Riestra"
+  },
+  "19685": {
+   "name": "Rubén Forestello",
+   "wiki": "Estudiantes de Río Cuarto"
+  }
+ },
+ "brasileirao": {
+  "819": {
+   "name": "Leonardo Jardim",
+   "wiki": "CR Flamengo"
+  },
+  "874": {
+   "name": "Clarence Seedorf",
+   "wiki": "SC Corinthians Paulista"
+  },
+  "1936": {
+   "name": "Eduardo Baptista",
+   "wiki": "SC Internacional"
+  },
+  "2022": {
+   "name": "Artur Jorge",
+   "wiki": "Cruzeiro EC"
+  },
+  "2026": {
+   "name": "Dorival Júnior",
+   "wiki": "São Paulo FC"
+  },
+  "2029": {
+   "name": "Abel Ferreira",
+   "wiki": "SE Palmeiras"
+  },
+  "2674": {
+   "name": "Cuca",
+   "wiki": "Santos FC"
+  },
+  "3445": {
+   "name": "Marcão",
+   "wiki": "Fluminense FC"
+  },
+  "3454": {
+   "name": "Pedro Emanuel",
+   "wiki": "CR Vasco da Gama"
+  },
+  "3456": {
+   "name": "Fernando Seabra",
+   "wiki": "Coritiba Foot Ball Club"
+  },
+  "3457": {
+   "name": "Jair Ventura",
+   "wiki": "Esporte Clube Vitória"
+  },
+  "3458": {
+   "name": "Odair Hellmann",
+   "wiki": "Club Athletico Paranaense"
+  },
+  "4936": {
+   "name": "Thiago Carpini",
+   "wiki": "Clube do Remo"
+  },
+  "6079": {
+   "name": "Vagner Mancini",
+   "wiki": "Red Bull Bragantino"
+  },
+  "6086": {
+   "name": "Tite",
+   "wiki": "Botafogo FR"
+  },
+  "6273": {
+   "name": "Renato Portaluppi",
+   "wiki": "Grêmio FBPA"
+  },
+  "7632": {
+   "name": "Eduardo Domínguez",
+   "wiki": "Clube Atlético Mineiro"
+  },
+  "9169": {
+   "name": "Rafael Guanaes",
+   "wiki": "Mirassol Futebol Clube"
+  },
+  "9318": {
+   "name": null,
+   "wiki": "LaMia Flight 2933"
+  },
+  "9967": {
+   "name": "Rogério Ceni",
+   "wiki": "Esporte Clube Bahia"
+  }
+ },
+ "bundesliga": {
+  "122": {
+   "name": "René Wagner",
+   "wiki": "1. FC Köln"
+  },
+  "124": {
+   "name": "Niko Kovač",
+   "wiki": "Borussia Dortmund"
+  },
+  "125": {
+   "name": "Adi Hütter",
+   "wiki": "Eintracht Frankfurt"
+  },
+  "126": {
+   "name": "Julian Schuster",
+   "wiki": "SC Freiburg"
+  },
+  "127": {
+   "name": "Merlin Polzin",
+   "wiki": "Hamburger SV"
+  },
+  "131": {
+   "name": "Carles Martínez Novell",
+   "wiki": "Bayer 04 Leverkusen"
+  },
+  "132": {
+   "name": "Vincent Kompany",
+   "wiki": "FC Bayern Munich"
+  },
+  "133": {
+   "name": "Miron Muslić",
+   "wiki": "FC Schalke 04"
+  },
+  "134": {
+   "name": "Sebastian Hoeneß",
+   "wiki": "VfB Stuttgart"
+  },
+  "137": {
+   "name": "Daniel Thioune",
+   "wiki": "SV Werder Bremen"
+  },
+  "268": {
+   "name": "Alexander Blessin",
+   "wiki": "Borussia Mönchengladbach"
+  },
+  "598": {
+   "name": "Mauro Lustrinelli",
+   "wiki": "1. FC Union Berlin"
+  },
+  "2950": {
+   "name": "Urs Fischer",
+   "wiki": "1. FSV Mainz 05"
+  },
+  "3307": {
+   "name": "Ralf Kettemann",
+   "wiki": "SC Paderborn 07"
+  },
+  "3841": {
+   "name": "Manuel Baum",
+   "wiki": "FC Augsburg"
+  },
+  "7911": {
+   "name": "Christian Ilzer",
+   "wiki": "TSG 1899 Hoffenheim"
+  },
+  "10388": {
+   "name": "Vincent Wagner",
+   "wiki": "SV Elversberg"
+  },
+  "11420": {
+   "name": "Martín Demichelis",
+   "wiki": "RB Leipzig"
+  }
+ },
+ "champions-league": {
+  "83": {
+   "name": "Hansi Flick",
+   "wiki": "FC Barcelona"
+  },
+  "86": {
+   "name": "José Mourinho",
+   "wiki": "Real Madrid CF"
+  },
+  "102": {
+   "name": "Iñigo Pérez",
+   "wiki": "Villarreal CF"
+  },
+  "104": {
+   "name": "Gian Piero Gasperini",
+   "wiki": "AS Roma"
+  },
+  "110": {
+   "name": "Cristian Chivu",
+   "wiki": "Inter Milan"
+  },
+  "114": {
+   "name": "Massimiliano Allegri",
+   "wiki": "SSC Napoli"
+  },
+  "124": {
+   "name": "Niko Kovač",
+   "wiki": "Borussia Dortmund"
+  },
+  "132": {
+   "name": "Vincent Kompany",
+   "wiki": "FC Bayern Munich"
+  },
+  "134": {
+   "name": "Sebastian Hoeneß",
+   "wiki": "VfB Stuttgart"
+  },
+  "142": {
+   "name": "Ruben den Uil",
+   "wiki": "Excelsior Rotterdam"
+  },
+  "148": {
+   "name": "Peter Bosz",
+   "wiki": "PSV Eindhoven"
+  },
+  "160": {
+   "name": "Luis Enrique",
+   "wiki": "Paris Saint-Germain FC"
+  },
+  "166": {
+   "name": "Davide Ancelotti",
+   "wiki": "Lille OSC"
+  },
+  "175": {
+   "name": "Yannick Cahuzac",
+   "wiki": "RC Lens"
+  },
+  "244": {
+   "name": "Manuel Pellegrini",
+   "wiki": "Real Betis"
+  },
+  "359": {
+   "name": "Mikel Arteta",
+   "wiki": "Arsenal F.C."
+  },
+  "360": {
+   "name": "Michael Carrick",
+   "wiki": "Manchester United F.C."
+  },
+  "362": {
+   "name": "Unai Emery",
+   "wiki": "Aston Villa F.C."
+  },
+  "364": {
+   "name": "Andoni Iraola",
+   "wiki": "Liverpool F.C."
+  },
+  "382": {
+   "name": "Enzo Maresca",
+   "wiki": "Manchester City F.C."
+  },
+  "432": {
+   "name": "Okan Buruk",
+   "wiki": "Galatasaray S.K. (football)"
+  },
+  "436": {
+   "name": "Emre Belözoğlu",
+   "wiki": "Fenerbahçe S.K. (football)"
+  },
+  "437": {
+   "name": "Francesco Farioli",
+   "wiki": "FC Porto"
+  },
+  "493": {
+   "name": "Arda Turan",
+   "wiki": "FC Shakhtar Donetsk"
+  },
+  "494": {
+   "name": "Jindřich Trpišovský",
+   "wiki": "SK Slavia Prague"
+  },
+  "510": {
+   "name": "Bjarte Lunde Aarsheim & Morten Jensen",
+   "wiki": "Viking FK"
+  },
+  "521": {
+   "name": "Yaya Touré",
+   "wiki": "ŠK Slovan Bratislava"
+  },
+  "570": {
+   "name": "Ivan Leko",
+   "wiki": "Club Brugge KV"
+  },
+  "887": {
+   "name": "Marko Nikolić",
+   "wiki": "AEK Athens F.C."
+  },
+  "1068": {
+   "name": "Diego Simeone",
+   "wiki": "Atlético Madrid"
+  },
+  "2250": {
+   "name": "Paulo Fonseca",
+   "wiki": "Sporting CP"
+  },
+  "2572": {
+   "name": "Cesc Fàbregas",
+   "wiki": "Como 1907"
+  },
+  "2980": {
+   "name": "Kjetil Knutsen",
+   "wiki": "FK Bodø/Glimt"
+  },
+  "4411": {
+   "name": "Dietmar Kühbauer",
+   "wiki": "LASK"
+  },
+  "11420": {
+   "name": "Martín Demichelis",
+   "wiki": "RB Leipzig"
+  },
+  "21922": {
+   "name": "Valdas Dambrauskas",
+   "wiki": "Sabah FK (Azerbaijan)"
+  }
+ },
+ "eredivisie": {
+  "139": {
+   "name": "Míchel",
+   "wiki": "AFC Ajax"
+  },
+  "140": {
+   "name": "Lee-Roy Echteld",
+   "wiki": "AZ Alkmaar"
+  },
+  "142": {
+   "name": "Giovanni van Bronckhorst",
+   "wiki": "Feyenoord"
+  },
+  "143": {
+   "name": "Danny Buijs",
+   "wiki": "Fortuna Sittard"
+  },
+  "145": {
+   "name": "Dick Lukkien",
+   "wiki": "FC Groningen"
+  },
+  "146": {
+   "name": "Robin Veldman",
+   "wiki": "SC Heerenveen"
+  },
+  "147": {
+   "name": "Dick Schreuder",
+   "wiki": "NEC Nijmegen"
+  },
+  "148": {
+   "name": "Peter Bosz",
+   "wiki": "PSV Eindhoven"
+  },
+  "151": {
+   "name": "Rogier Meijer",
+   "wiki": "Sparta Rotterdam"
+  },
+  "152": {
+   "name": "John van den Brom",
+   "wiki": "FC Twente"
+  },
+  "153": {
+   "name": "Anthony Correia",
+   "wiki": "FC Utrecht"
+  },
+  "2565": {
+   "name": "Alex Pastoor",
+   "wiki": "PEC Zwolle"
+  },
+  "2566": {
+   "name": "Ruben den Uil",
+   "wiki": "Excelsior Rotterdam"
+  },
+  "3706": {
+   "name": "Joseph Oosting",
+   "wiki": "Go Ahead Eagles"
+  },
+  "3735": {
+   "name": "Henk Brugge",
+   "wiki": "SC Telstar"
+  },
+  "3736": {
+   "name": "Johan Plat",
+   "wiki": "SC Cambuur"
+  }
+ },
+ "indian-super-league": {
+  "8896": {
+   "name": "Dimitris Dimitriou",
+   "wiki": "Churchill Brothers FC"
+  },
+  "8897": {
+   "name": "Antonio López Habas",
+   "wiki": "East Bengal FC"
+  },
+  "17997": {
+   "name": "Ashley Westwood",
+   "wiki": "Kerala Blasters FC"
+  },
+  "17998": {
+   "name": "T. G. Purushothaman",
+   "wiki": "Odisha FC"
+  },
+  "18000": {
+   "name": "Clifford Miranda",
+   "wiki": "Chennaiyin FC"
+  },
+  "18003": {
+   "name": "Gouramangi Singh",
+   "wiki": "FC Goa"
+  },
+  "18004": {
+   "name": "Juan Pedro Benali",
+   "wiki": "NorthEast United FC"
+  },
+  "18851": {
+   "name": "Pep Muñoz",
+   "wiki": "Bengaluru FC"
+  },
+  "18894": {
+   "name": "Pavlos Dermitzakis",
+   "wiki": "Punjab FC"
+  },
+  "20774": {
+   "name": "Panagiotis Dilmperis",
+   "wiki": "Mohun Bagan Super Giant"
+  },
+  "22069": {
+   "name": "Carlos Vaz Pinto",
+   "wiki": "Inter Kashi FC"
+  },
+  "131703": {
+   "name": "Tomasz Tchórz",
+   "wiki": "SC Delhi"
+  }
+ },
+ "j1-league": {
+  "3384": {
+   "name": "Rikizo Matsuhashi",
+   "wiki": "FC Tokyo"
+  },
+  "3385": {
+   "name": "Cho Kwi-jae",
+   "wiki": "Urawa Red Diamonds"
+  },
+  "3393": {
+   "name": "Naoki Sōma",
+   "wiki": "Tokyo Verdy"
+  },
+  "7102": {
+   "name": "Tomokazu Myojin",
+   "wiki": "Gamba Osaka"
+  },
+  "7104": {
+   "name": "Takayuki Yoshida",
+   "wiki": "Shimizu S-Pulse"
+  },
+  "7107": {
+   "name": "Shinya Tsukahara",
+   "wiki": "Avispa Fukuoka"
+  },
+  "7108": {
+   "name": "Mihailo Petrović",
+   "wiki": "Nagoya Grampus"
+  },
+  "7109": {
+   "name": "Pablo Machín",
+   "wiki": "Cerezo Osaka"
+  },
+  "7111": {
+   "name": null,
+   "wiki": "Ichihara, Chiba"
+  },
+  "7112": {
+   "name": "Shigetoshi Hasebe",
+   "wiki": "Kawasaki Frontale"
+  },
+  "7114": {
+   "name": "Bartosch Gaul",
+   "wiki": "Sanfrecce Hiroshima"
+  },
+  "7115": {
+   "name": "Toru Oniki",
+   "wiki": "Kashima Antlers"
+  },
+  "7116": {
+   "name": "Steve Corica",
+   "wiki": "Yokohama F. Marinos"
+  },
+  "7476": {
+   "name": "Ricardo Rodríguez",
+   "wiki": "Kashiwa Reysol"
+  },
+  "7477": {
+   "name": "Michael Skibbe",
+   "wiki": "Vissel Kobe"
+  },
+  "19001": {
+   "name": "Takuya Takagi",
+   "wiki": "V-Varen Nagasaki"
+  },
+  "21361": {
+   "name": "Ranko Popović",
+   "wiki": "Kyoto Sanga FC"
+  },
+  "22167": {
+   "name": "Go Kuroda",
+   "wiki": "FC Machida Zelvia"
+  },
+  "22522": {
+   "name": "Takashi Kiyama",
+   "wiki": "Fagiano Okayama"
+  },
+  "131701": {
+   "name": "Naoki Mori",
+   "wiki": "Mito HollyHock"
+  }
+ },
+ "la-liga": {
+  "83": {
+   "name": "Hansi Flick",
+   "wiki": "FC Barcelona"
+  },
+  "85": {
+   "name": "Claudio Giráldez",
+   "wiki": "RC Celta de Vigo"
+  },
+  "86": {
+   "name": "José Mourinho",
+   "wiki": "Real Madrid CF"
+  },
+  "87": {
+   "name": "José Alberto",
+   "wiki": "Racing de Santander"
+  },
+  "88": {
+   "name": "Eder Sarabia",
+   "wiki": "RCD Espanyol"
+  },
+  "89": {
+   "name": "Pellegrino Matarazzo",
+   "wiki": "Real Sociedad"
+  },
+  "90": {
+   "name": "Antonio Hidalgo",
+   "wiki": "Deportivo de A Coruña"
+  },
+  "93": {
+   "name": "Edin Terzić",
+   "wiki": "Athletic Bilbao"
+  },
+  "94": {
+   "name": "Javier Aguirre",
+   "wiki": "Valencia CF"
+  },
+  "96": {
+   "name": null,
+   "wiki": "Deportivo Alavés"
+  },
+  "97": {
+   "name": "Jagoba Arrasate",
+   "wiki": "CA Osasuna"
+  },
+  "99": {
+   "name": "Juan Francisco Funes",
+   "wiki": "Málaga CF"
+  },
+  "101": {
+   "name": "Beñat San José",
+   "wiki": "Rayo Vallecano"
+  },
+  "102": {
+   "name": "Iñigo Pérez",
+   "wiki": "Villarreal CF"
+  },
+  "243": {
+   "name": "Luis García Plaza",
+   "wiki": "Sevilla FC"
+  },
+  "244": {
+   "name": "Manuel Pellegrini",
+   "wiki": "Real Betis"
+  },
+  "1068": {
+   "name": "Diego Simeone",
+   "wiki": "Atlético Madrid"
+  },
+  "1538": {
+   "name": "Luís Castro",
+   "wiki": "Levante UD"
+  },
+  "2922": {
+   "name": "José Bordalás",
+   "wiki": "Getafe CF"
+  },
+  "3751": {
+   "name": "Martín Anselmi",
+   "wiki": "Elche CF"
+  }
+ },
+ "liga-mx": {
+  "216": {
+   "name": "Hernán Crespo",
+   "wiki": "Atlas F.C."
+  },
+  "218": {
+   "name": "Joel Huiqui",
+   "wiki": "Cruz Azul"
+  },
+  "219": {
+   "name": "Gabriel Milito",
+   "wiki": "C.D. Guadalajara"
+  },
+  "220": {
+   "name": "Matías Almeyda",
+   "wiki": "C.F. Monterrey"
+  },
+  "222": {
+   "name": "Esteban González",
+   "wiki": "Querétaro F.C."
+  },
+  "223": {
+   "name": "Antonio Mohamed",
+   "wiki": "Toluca FC"
+  },
+  "225": {
+   "name": "Cuca",
+   "wiki": "Santos FC"
+  },
+  "226": {
+   "name": "Miguel Herrera",
+   "wiki": "Atlante F.C."
+  },
+  "228": {
+   "name": "Javier Gandolfi",
+   "wiki": "Club León"
+  },
+  "229": {
+   "name": "Juan Reynoso",
+   "wiki": "Club Necaxa"
+  },
+  "231": {
+   "name": "Gerardo Espinoza",
+   "wiki": "Club Puebla"
+  },
+  "232": {
+   "name": "Víctor Manuel Vucetich",
+   "wiki": "Tigres UANL"
+  },
+  "233": {
+   "name": "Esteban Solari",
+   "wiki": "Pumas UNAM"
+  },
+  "10125": {
+   "name": "Sebastián Abreu",
+   "wiki": "Club Tijuana"
+  },
+  "15720": {
+   "name": "Diego Mejía",
+   "wiki": "Atlético San Luis"
+  },
+  "17851": {
+   "name": "Gustavo Lema",
+   "wiki": "FC Juárez"
+  }
+ },
+ "ligue-1": {
+  "160": {
+   "name": "Luis Enrique",
+   "wiki": "Paris Saint-Germain FC"
+  },
+  "166": {
+   "name": "Davide Ancelotti",
+   "wiki": "Lille OSC"
+  },
+  "167": {
+   "name": "Jorge Maciel",
+   "wiki": "Olympique Lyonnais"
+  },
+  "169": {
+   "name": "Franck Haise",
+   "wiki": "Stade Rennais FC"
+  },
+  "170": {
+   "name": "Stéphane Dumont",
+   "wiki": "ES Troyes AC"
+  },
+  "172": {
+   "name": "Will Still",
+   "wiki": "AJ Auxerre"
+  },
+  "174": {
+   "name": "Filipe Luís",
+   "wiki": "AS Monaco FC"
+  },
+  "175": {
+   "name": "Yannick Cahuzac",
+   "wiki": "RC Lens"
+  },
+  "176": {
+   "name": "Bruno Génésio",
+   "wiki": "Olympique de Marseille"
+  },
+  "179": {
+   "name": "Jens Berthel Askou",
+   "wiki": "Toulouse FC"
+  },
+  "180": {
+   "name": "Hugo Oliveira",
+   "wiki": "RC Strasbourg Alsace"
+  },
+  "273": {
+   "name": "Alexandre Dujeux",
+   "wiki": "FC Lorient"
+  },
+  "2502": {
+   "name": "Olivier Pantaloni",
+   "wiki": "OGC Nice"
+  },
+  "2697": {
+   "name": "Patrick Videira",
+   "wiki": "Le Mans FC"
+  },
+  "6851": {
+   "name": "Liam Rosenior",
+   "wiki": "Paris FC"
+  },
+  "6997": {
+   "name": "Julien Lachuer",
+   "wiki": "Stade Brestois 29"
+  },
+  "7868": {
+   "name": "Stéphane Gilli",
+   "wiki": "Angers SCO"
+  }
+ },
+ "mls": {
+  "182": {
+   "name": "Gregg Berhalter",
+   "wiki": "Chicago Fire FC"
+  },
+  "183": {
+   "name": "Laurent Courtois",
+   "wiki": "Columbus Crew"
+  },
+  "184": {
+   "name": "Erik Bushey",
+   "wiki": "Colorado Rapids 2"
+  },
+  "185": {
+   "name": "Eric Quill",
+   "wiki": "FC Dallas"
+  },
+  "186": {
+   "name": "Raphaël Wicky",
+   "wiki": "Sporting Kansas City"
+  },
+  "187": {
+   "name": "Greg Vanney",
+   "wiki": "LA Galaxy"
+  },
+  "189": {
+   "name": "Marko Mitrović",
+   "wiki": "New England Revolution"
+  },
+  "190": {
+   "name": "Michael Bradley",
+   "wiki": "New York Red Bulls"
+  },
+  "191": {
+   "name": "Bruce Arena",
+   "wiki": "San Jose Earthquakes"
+  },
+  "193": {
+   "name": "René Weiler",
+   "wiki": "D.C. United"
+  },
+  "4771": {
+   "name": "Pablo Mastroeni",
+   "wiki": "Real Salt Lake"
+  },
+  "6077": {
+   "name": "Ben Olsen",
+   "wiki": "Houston Dynamo FC"
+  },
+  "7318": {
+   "name": "Mauro Eustáquio",
+   "wiki": "Inter Toronto FC"
+  },
+  "9720": {
+   "name": "Philippe Eullaffroy",
+   "wiki": "CF Montréal"
+  },
+  "9723": {
+   "name": "Martí Cifuentes",
+   "wiki": "Portland Timbers"
+  },
+  "9726": {
+   "name": "Brian Schmetzer",
+   "wiki": "Seattle Sounders FC"
+  },
+  "9727": {
+   "name": "Axel Schuster",
+   "wiki": "Vancouver Whitecaps FC"
+  },
+  "10739": {
+   "name": "Ryan Richter",
+   "wiki": "Philadelphia Union"
+  },
+  "12011": {
+   "name": "Martín Perelman",
+   "wiki": "Orlando City SC"
+  },
+  "17362": {
+   "name": "Cameron Knowles",
+   "wiki": "Minnesota United FC"
+  },
+  "17606": {
+   "name": "Pascal Jansen",
+   "wiki": "New York City FC"
+  },
+  "18267": {
+   "name": "Pat Noonan",
+   "wiki": "FC Cincinnati"
+  },
+  "18418": {
+   "name": "Gerardo Martino",
+   "wiki": "Atlanta United FC"
+  },
+  "18966": {
+   "name": "",
+   "wiki": "Los Angeles FC"
+  },
+  "18986": {
+   "name": "B. J. Callaghan",
+   "wiki": "Nashville SC"
+  },
+  "20232": {
+   "name": "Kily González",
+   "wiki": "Inter Miami CF"
+  },
+  "20906": {
+   "name": "Davy Arnaud",
+   "wiki": "Austin FC"
+  },
+  "21300": {
+   "name": "Dean Smith",
+   "wiki": "Charlotte FC"
+  },
+  "21812": {
+   "name": "Corey Wray",
+   "wiki": "St. Louis City SC"
+  },
+  "22529": {
+   "name": "Mikey Varas",
+   "wiki": "San Diego FC"
+  }
+ },
+ "nwsl": {
+  "15360": {
+   "name": "Karina Báez",
+   "wiki": "Chicago Stars FC"
+  },
+  "15362": {
+   "name": "Robert Vilahamn",
+   "wiki": "Portland Thorns FC"
+  },
+  "15363": {
+   "name": "Laura Harvey",
+   "wiki": "Seattle Reign FC"
+  },
+  "15364": {
+   "name": "Juan Carlos Amorós",
+   "wiki": "Gotham FC"
+  },
+  "15365": {
+   "name": "Adrián González",
+   "wiki": "Washington Spirit"
+  },
+  "15366": {
+   "name": "Mak Lind",
+   "wiki": "North Carolina Courage"
+  },
+  "17346": {
+   "name": "Angela Hucles Mangano",
+   "wiki": "Houston Dash"
+  },
+  "18206": {
+   "name": "Yolanda Thomas",
+   "wiki": "Orlando Pride"
+  },
+  "19141": {
+   "name": "Jimmy Coenraets",
+   "wiki": "Utah Royals"
+  },
+  "20905": {
+   "name": "Bev Yanez",
+   "wiki": "Racing Louisville FC"
+  },
+  "20907": {
+   "name": "Chris Armas",
+   "wiki": "Kansas City Current"
+  },
+  "21422": {
+   "name": "Leif Gunnar Smerud",
+   "wiki": "Angel City FC"
+  },
+  "21423": {
+   "name": "Jonas Eidevall",
+   "wiki": "San Diego Wave FC"
+  },
+  "22187": {
+   "name": "Matt Potter",
+   "wiki": "Bay FC"
+  },
+  "131562": {
+   "name": "Filipa Patão",
+   "wiki": "Boston Legacy FC"
+  }
+ },
+ "premier-league": {
+  "306": {
+   "name": "Sergej Jakirović",
+   "wiki": "Hull City A.F.C."
+  },
+  "331": {
+   "name": "Fabian Hürzeler",
+   "wiki": "Brighton & Hove Albion F.C."
+  },
+  "337": {
+   "name": "Keith Andrews",
+   "wiki": "Brentford F.C."
+  },
+  "349": {
+   "name": "Marco Rose",
+   "wiki": "AFC Bournemouth"
+  },
+  "357": {
+   "name": "Daniel Farke",
+   "wiki": "Leeds United F.C."
+  },
+  "359": {
+   "name": "Mikel Arteta",
+   "wiki": "Arsenal F.C."
+  },
+  "360": {
+   "name": "Michael Carrick",
+   "wiki": "Manchester United F.C."
+  },
+  "361": {
+   "name": "Matthias Jaissle",
+   "wiki": "Newcastle United F.C."
+  },
+  "362": {
+   "name": "Unai Emery",
+   "wiki": "Aston Villa F.C."
+  },
+  "363": {
+   "name": "Xabi Alonso",
+   "wiki": "Chelsea F.C."
+  },
+  "364": {
+   "name": "Andoni Iraola",
+   "wiki": "Liverpool F.C."
+  },
+  "366": {
+   "name": "Régis Le Bris",
+   "wiki": "Sunderland A.F.C."
+  },
+  "367": {
+   "name": "Roberto De Zerbi",
+   "wiki": "Tottenham Hotspur F.C."
+  },
+  "368": {
+   "name": "David Moyes",
+   "wiki": "Everton F.C."
+  },
+  "370": {
+   "name": "Álvaro Arbeloa",
+   "wiki": "Fulham F.C."
+  },
+  "373": {
+   "name": "Gary O'Neil",
+   "wiki": "Ipswich Town F.C."
+  },
+  "382": {
+   "name": "Enzo Maresca",
+   "wiki": "Manchester City F.C."
+  },
+  "384": {
+   "name": "Pierre Sage",
+   "wiki": "Crystal Palace F.C."
+  },
+  "388": {
+   "name": "Frank Lampard",
+   "wiki": "Coventry City F.C."
+  },
+  "393": {
+   "name": "Oliver Glasner",
+   "wiki": "Nottingham Forest F.C."
+  }
+ },
+ "primeira-liga": {
+  "437": {
+   "name": "Francesco Farioli",
+   "wiki": "FC Porto"
+  },
+  "552": {
+   "name": "Mitchell van der Gaag",
+   "wiki": "C.S. Marítimo"
+  },
+  "1929": {
+   "name": "Marco Silva",
+   "wiki": "S.L. Benfica"
+  },
+  "2250": {
+   "name": "Paulo Fonseca",
+   "wiki": "Sporting CP"
+  },
+  "2994": {
+   "name": null,
+   "wiki": "Cláudio Braga (footballer)"
+  },
+  "3472": {
+   "name": "Alexandre Santos",
+   "wiki": "C.D. Nacional"
+  },
+  "3696": {
+   "name": "Vasco Botelho da Costa",
+   "wiki": "Moreirense F.C."
+  },
+  "3699": {
+   "name": "Luís Pinto",
+   "wiki": "Gil Vicente F.C."
+  },
+  "3822": {
+   "name": "Vasco Seabra",
+   "wiki": "Rio Ave F.C."
+  },
+  "5309": {
+   "name": "Tiago Margarido",
+   "wiki": "Vitória S.C."
+  },
+  "12215": {
+   "name": "Petit",
+   "wiki": "C.D. Santa Clara"
+  },
+  "12216": {
+   "name": "Leandro Pires",
+   "wiki": "G.D. Estoril Praia"
+  },
+  "12698": {
+   "name": "Ricardo",
+   "wiki": "F.C. Famalicão"
+  },
+  "15784": {
+   "name": "Vítor Severino",
+   "wiki": "F.C. Arouca"
+  },
+  "21581": {
+   "name": "Filipe Coelho",
+   "wiki": "Casa Pia A.C."
+  },
+  "21607": {
+   "name": "Bruno Pinheiro",
+   "wiki": "Académico de Viseu F.C."
+  },
+  "21610": {
+   "name": "Pepa",
+   "wiki": "C.F. Estrela da Amadora"
+  },
+  "21613": {
+   "name": "Sérgio Ferreira",
+   "wiki": "F.C. Alverca"
+  }
+ },
+ "saudi-pro-league": {
+  "793": {
+   "name": "Thomas Letsch",
+   "wiki": "Al Shabab Club"
+  },
+  "817": {
+   "name": "Ange Postecoglou",
+   "wiki": "Al-Nassr FC"
+  },
+  "929": {
+   "name": "Simone Inzaghi",
+   "wiki": "Al Hilal SFC"
+  },
+  "2276": {
+   "name": "Jens Wissing",
+   "wiki": "Al-Ittihad Club (Jeddah)"
+  },
+  "8346": {
+   "name": "André Jardine",
+   "wiki": "Shabab Al Ahli Club"
+  },
+  "8363": {
+   "name": "Arthur Papas",
+   "wiki": "Al-Ettifaq Club"
+  },
+  "13033": {
+   "name": "Jamal Sellami",
+   "wiki": "Al Fateh SC"
+  },
+  "18459": {
+   "name": "Vuk Rašović",
+   "wiki": "Al Taawoun FC"
+  },
+  "21446": {
+   "name": "João Mota",
+   "wiki": "Al-Faisaly SC"
+  },
+  "21827": {
+   "name": "Fábio Carille",
+   "wiki": "Al-Fayha Club"
+  },
+  "21829": {
+   "name": "José Gomes",
+   "wiki": "Al-Khaleej FC"
+  },
+  "21833": {
+   "name": "Damir Burić",
+   "wiki": "Abha Club"
+  },
+  "21964": {
+   "name": "Jalel Kadri",
+   "wiki": "Al-Hazem FC"
+  },
+  "21965": {
+   "name": "Maurício Dulac",
+   "wiki": "Al-Riyadh SC"
+  },
+  "22022": {
+   "name": "Brendan Rodgers",
+   "wiki": "Al Qadsiah FC"
+  },
+  "22028": {
+   "name": "Des Buckingham",
+   "wiki": "Al-Kholood Club"
+  },
+  "130899": {
+   "name": "Christophe Galtier",
+   "wiki": "Neom SC"
+  },
+  "131746": {
+   "name": "Bruno Lage",
+   "wiki": "Diriyah Club"
+  }
+ },
+ "scottish-premiership": {
+  "250": {
+   "name": "Craig McLeish",
+   "wiki": "St Mirren F.C."
+  },
+  "254": {
+   "name": "John McGlynn",
+   "wiki": "Falkirk F.C."
+  },
+  "256": {
+   "name": "Martin O'Neill",
+   "wiki": "Celtic F.C."
+  },
+  "257": {
+   "name": "Derek McInnes",
+   "wiki": "Rangers F.C."
+  },
+  "258": {
+   "name": "Marink Reedijk",
+   "wiki": "Hibernian F.C."
+  },
+  "260": {
+   "name": "Neil McCann",
+   "wiki": "Kilmarnock F.C."
+  },
+  "261": {
+   "name": "Steven Pressley",
+   "wiki": "Dundee F.C."
+  },
+  "262": {
+   "name": "Wouter Vrancken",
+   "wiki": "Heart of Midlothian F.C."
+  },
+  "263": {
+   "name": "Stephen Robinson",
+   "wiki": "Aberdeen F.C."
+  },
+  "264": {
+   "name": "Jim Goodwin",
+   "wiki": "Dundee United F.C."
+  },
+  "266": {
+   "name": "Alfred Johansson",
+   "wiki": "Motherwell F.C."
+  },
+  "267": {
+   "name": "Simo Valakari",
+   "wiki": "St Johnstone F.C."
+  }
+ },
+ "serie-a": {
+  "103": {
+   "name": "Ruben Amorim",
+   "wiki": "AC Milan"
+  },
+  "104": {
+   "name": "Gian Piero Gasperini",
+   "wiki": "AS Roma"
+  },
+  "105": {
+   "name": "Maurizio Sarri",
+   "wiki": "Atalanta BC"
+  },
+  "107": {
+   "name": "Raffaele Palladino",
+   "wiki": "Bologna FC 1909"
+  },
+  "109": {
+   "name": "Paolo Vanoli",
+   "wiki": "ACF Fiorentina"
+  },
+  "110": {
+   "name": "Cristian Chivu",
+   "wiki": "Inter Milan"
+  },
+  "111": {
+   "name": "Luciano Spalletti",
+   "wiki": "Juventus FC"
+  },
+  "112": {
+   "name": "Gennaro Gattuso",
+   "wiki": "SS Lazio"
+  },
+  "113": {
+   "name": "Eusebio Di Francesco",
+   "wiki": "US Lecce"
+  },
+  "114": {
+   "name": "Massimiliano Allegri",
+   "wiki": "SSC Napoli"
+  },
+  "115": {
+   "name": "Alberto Gilardino",
+   "wiki": "Parma Calcio 1913"
+  },
+  "118": {
+   "name": "Paolo Zanetti",
+   "wiki": "Udinese Calcio"
+  },
+  "239": {
+   "name": "Ignazio Abate",
+   "wiki": "Torino FC"
+  },
+  "2572": {
+   "name": "Cesc Fàbregas",
+   "wiki": "Como 1907"
+  },
+  "3263": {
+   "name": "Daniele De Rossi",
+   "wiki": "Genoa CFC"
+  },
+  "3997": {
+   "name": "Alberto Aquilani",
+   "wiki": "US Sassuolo Calcio"
+  },
+  "4007": {
+   "name": "Ivan Jurić",
+   "wiki": "AC Monza"
+  },
+  "4057": {
+   "name": "Massimiliano Alvini",
+   "wiki": "Frosinone Calcio"
+  },
+  "17530": {
+   "name": "Davide Nicola",
+   "wiki": "Venezia FC"
+  }
+ },
+ "super-lig": {
+  "432": {
+   "name": "Okan Buruk",
+   "wiki": "Galatasaray S.K. (football)"
+  },
+  "436": {
+   "name": "Emre Belözoğlu",
+   "wiki": "Fenerbahçe S.K. (football)"
+  },
+  "789": {
+   "name": "Stanimir Stoilov",
+   "wiki": "Göztepe S.K."
+  },
+  "995": {
+   "name": "Selçuk İnan",
+   "wiki": "Kocaelispor"
+  },
+  "996": {
+   "name": "Bernd Storck",
+   "wiki": "Gençlerbirliği S.K."
+  },
+  "997": {
+   "name": "Thomas Reis",
+   "wiki": "Trabzonspor"
+  },
+  "1895": {
+   "name": "Vincenzo Italiano",
+   "wiki": "Beşiktaş J.K."
+  },
+  "6870": {
+   "name": "Alfred Schreuder",
+   "wiki": "Kasımpaşa S.K."
+  },
+  "7648": {
+   "name": "İlhan Palut",
+   "wiki": "Konyaspor"
+  },
+  "7656": {
+   "name": "Recep Uçar",
+   "wiki": "Çaykur Rizespor"
+  },
+  "7914": {
+   "name": "Nuri Şahin",
+   "wiki": "İstanbul Başakşehir F.K."
+  },
+  "9078": {
+   "name": "João Pereira",
+   "wiki": "Alanyaspor"
+  },
+  "11429": {
+   "name": "Nenad Bjelica",
+   "wiki": "Samsunspor"
+  },
+  "19267": {
+   "name": "Serkan Özbalta",
+   "wiki": "Erzurumspor F.K."
+  },
+  "20070": {
+   "name": "Orhan Ak",
+   "wiki": "Gaziantep F.K."
+  },
+  "20729": {
+   "name": "Mustafa Dalcı",
+   "wiki": "Eyüpspor"
+  },
+  "132334": {
+   "name": "Burak Yılmaz",
+   "wiki": "Çorum F.K."
+  }
+ },
+ "wsl": {
+  "19257": {
+   "name": "Andrée Jeglertz",
+   "wiki": "Manchester City W.F.C."
+  },
+  "19968": {
+   "name": "Amy Merricks",
+   "wiki": "Birmingham City W.F.C."
+  },
+  "19970": {
+   "name": "Sonia Bompastor",
+   "wiki": "Chelsea F.C. Women"
+  },
+  "19971": {
+   "name": "Gareth Taylor",
+   "wiki": "Liverpool F.C. Women"
+  },
+  "19972": {
+   "name": "Scott Phelan",
+   "wiki": "Everton F.C. Women"
+  },
+  "19973": {
+   "name": "Renée Slegers",
+   "wiki": "Arsenal W.F.C."
+  },
+  "19975": {
+   "name": "Rita Guarino",
+   "wiki": "West Ham United F.C. Women"
+  },
+  "19976": {
+   "name": "",
+   "wiki": "Brighton & Hove Albion W.F.C."
+  },
+  "20061": {
+   "name": "Eva Olid",
+   "wiki": "Manchester United W.F.C."
+  },
+  "20062": {
+   "name": "Martin Ho",
+   "wiki": "Tottenham Hotspur F.C. Women"
+  },
+  "20707": {
+   "name": "Brian Sørensen",
+   "wiki": "Aston Villa W.F.C."
+  },
+  "21035": {
+   "name": "Karen Hills",
+   "wiki": "Charlton Athletic W.F.C."
+  },
+  "21037": {
+   "name": "Jo Potter",
+   "wiki": "Crystal Palace F.C. Women"
+  }
+ }
+}

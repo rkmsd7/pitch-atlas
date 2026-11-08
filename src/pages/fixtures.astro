@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import FixtureList from '../components/FixtureList.astro';
+import { liveLeagues } from '../lib/live';
+const leagues = liveLeagues().filter((l) => l.fixtures.length || l.results.length);
+---
+<Base title="Fixtures and results">
+  <h1>Fixtures & results</h1>
+  <p class="muted">Upcoming matches and recent results across every competition in the atlas. Times are UTC. Data refreshes on each site build.</p>
+  <div class="tabs">{leagues.map((l) => <a href={`#${l.slug}`}>{l.abbreviation ?? l.name}</a>)}</div>
+  {leagues.map((l) => (
+    <section id={l.slug}>
+      <div class="section-head"><h2><a href={`/leagues/${l.slug}`}>{l.name}</a></h2><span class="updated">updated {new Date(l.fetchedAt).toUTCString().slice(0, 22)}</span></div>
+      <div class="two">
+        <div><h3>Upcoming</h3><FixtureList events={l.fixtures} limit={20} /></div>
+        <div><h3>Recent results</h3><FixtureList events={[...l.results].reverse()} limit={12} /></div>
+      </div>
+    </section>
+  ))}
+</Base>

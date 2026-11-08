@@ -1,0 +1,22 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Chips from '../../components/Chips.astro';
+import { maps, slugOf } from '../../lib/content';
+export async function getStaticPaths() { const m = await maps(); return m.tactics.map((t) => ({ params: { slug: slugOf(t) }, props: { entry: t } })); }
+const { entry } = Astro.props;
+const d = entry.data;
+const m = await maps();
+const { Content } = await render(entry);
+const users = m.managers.filter((g) => g.data.tactics.includes(slugOf(entry)) || g.data.philosophy === slugOf(entry));
+---
+<Base title={d.name} description={d.summary}>
+  <div class="page-head"><div><span class="eyebrow">Tactics{d.formation ? ` · ${d.formation}` : ''}{d.era ? ` · ${d.era}` : ''}</span><h1>{d.name}</h1><p class="sub">{d.summary}</p></div></div>
+  <div class="two">
+    <article class="prose"><Content /></article>
+    <aside class="side">
+      {(d.exponents.length > 0 || users.length > 0) && <div class="panel"><Chips title="Exponents" slugs={[...new Set([...d.exponents, ...users.map(slugOf)])]} map={m.manager} base="/managers" /></div>}
+      {d.related.length > 0 && <div class="panel"><Chips title="Related ideas" slugs={d.related} map={m.tactic} base="/tactics" /></div>}
+    </aside>
+  </div>
+</Base>

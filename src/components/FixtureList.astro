@@ -1,0 +1,22 @@
+---
+import type { LiveEvent } from '../lib/live';
+import { fmtDate } from '../lib/live';
+interface Props { events: (LiveEvent & { league?: string; leagueSlug?: string })[]; empty?: string; limit?: number }
+const { events, empty = 'No matches in the current window.', limit } = Astro.props;
+const list = limit ? events.slice(0, limit) : events;
+---
+<div class="fixtures">
+  {list.length === 0 && <p class="muted small">{empty}</p>}
+  {list.map((e) => {
+    const played = e.state === 'post';
+    const hs = Number(e.home.score), as = Number(e.away.score);
+    return (
+      <div class={`fx ${e.state === 'in' ? 'live' : ''}`}>
+        <div class={`t home ${played && hs > as ? 'winner' : ''}`}>{e.home.logo && <img src={e.home.logo} alt="" loading="lazy" />}<span>{e.home.name}</span></div>
+        <div class="score">{played || e.state === 'in' ? `${e.home.score ?? '-'} – ${e.away.score ?? '-'}` : 'v'}</div>
+        <div class={`t away ${played && as > hs ? 'winner' : ''}`}><span>{e.away.name}</span>{e.away.logo && <img src={e.away.logo} alt="" loading="lazy" />}</div>
+        <div class="when"><span>{e.state === 'in' ? `LIVE · ${e.detail}` : fmtDate(e.date)}{e.round ? ` · ${e.round}` : ''}</span><span>{e.league ? <a href={`/leagues/${e.leagueSlug}`}>{e.league}</a> : e.venue}</span></div>
+      </div>
+    );
+  })}
+</div>

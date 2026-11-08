@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import { maps, slugOf } from '../../lib/content';
+const m = await maps();
+const all = m.tactics.sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Tactics and philosophies">
+  <h1>Tactics & philosophies</h1>
+  <p class="muted">The ideas that organise eleven players: where they came from, how they work phase by phase, who does them best today and how they get beaten.</p>
+  <div class="grid">{all.map((t) => <a class="card" href={`/tactics/${slugOf(t)}`}><h3>{t.data.name}</h3><div class="meta">{t.data.formation ?? ''}{t.data.era ? ` · ${t.data.era}` : ''}</div><div class="meta" style="margin-top:.4rem">{t.data.summary}</div></a>)}</div>
+</Base>

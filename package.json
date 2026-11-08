@@ -1,0 +1,19 @@
+{
+  "name": "pitch-atlas",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "refresh": "node scripts/refresh-data.mjs",
+    "check": "astro check",
+    "refresh:managers": "node scripts/refresh-managers.mjs",
+    "lint:content": "node scripts/lint-content.mjs",
+    "fix:frontmatter": "node scripts/fix-frontmatter.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.12.0"
+  }
+}

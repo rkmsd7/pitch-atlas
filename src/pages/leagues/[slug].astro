@@ -1,0 +1,55 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import StandingsTable from '../../components/StandingsTable.astro';
+import FixtureList from '../../components/FixtureList.astro';
+import { maps, slugOf } from '../../lib/content';
+import { getLive, findTeam } from '../../lib/live';
+export async function getStaticPaths() { const m = await maps(); return m.leagues.map((l) => ({ params: { slug: slugOf(l) }, props: { entry: l } })); }
+const { entry } = Astro.props;
+const slug = slugOf(entry);
+const m = await maps();
+const live = getLive(entry.data.liveSlug);
+const { Content } = await render(entry);
+const clubs = m.clubs.filter((c) => c.data.league === slug).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const clubLinks = new Map<string, string>();
+if (live) {
+  for (const c of clubs) { const t = findTeam(live, [c.data.name, c.data.fullName ?? '', ...(c.data.nicknames ?? [])]); if (t) clubLinks.set(t.id, `/clubs/${slugOf(c)}`); }
+  for (const t of live.teams) if (!clubLinks.has(t.id)) clubLinks.set(t.id, `/clubs/${slug}--${t.slug}`);
+}
+const teams = live ? live.teams.map((t) => ({ t, href: clubLinks.get(t.id)! })).sort((a, b) => a.t.name.localeCompare(b.t.name)) : [];
+---
+<Base title={entry.data.name} description={entry.data.summary}>
+  <div class="page-head">
+    <div>
+      <span class="eyebrow">{entry.data.country} · {entry.data.gender === 'women' ? "Women's" : "Men's"} · tier {entry.data.tier}</span>
+      <h1>{entry.data.name}</h1>
+      <p class="sub">{entry.data.summary}</p>
+    </div>
+  </div>
+  <div class="stat-row">
+    {entry.data.currentChampion && <div class="stat"><b style="font-size:1.05rem">{entry.data.currentChampion}</b><span>reigning champion</span></div>}
+    {entry.data.mostTitles && <div class="stat"><b style="font-size:1.05rem">{entry.data.mostTitles}</b><span>most titles</span></div>}
+    {entry.data.founded && <div class="stat"><b>{entry.data.founded}</b><span>founded</span></div>}
+    {entry.data.teams && <div class="stat"><b>{entry.data.teams}</b><span>teams</span></div>}
+  </div>
+  {entry.data.format && <p class="muted">{entry.data.format}</p>}
+
+  {live ? (
+    <>
+      <div class="section-head"><h2>Table · {live.season}</h2><span class="updated">updated {new Date(live.fetchedAt).toUTCString().slice(0, 22)}</span></div>
+      <StandingsTable league={live} clubLinks={clubLinks} />
+      <p class="small muted">Green bar: Champions League / title zone · teal: other continental or play-off places · red: relegation. Hover a row for the exact note.</p>
+      <div class="two">
+        <div><h2>Upcoming fixtures</h2><FixtureList events={live.fixtures} limit={30} /></div>
+        <div><h2>Recent results</h2><FixtureList events={[...live.results].reverse()} limit={20} /></div>
+      </div>
+      <h2>Clubs</h2>
+      <div class="grid tight">{teams.map(({ t, href }) => <a class="card" href={href}>{t.logo && <img class="logo" src={t.logo} alt="" loading="lazy" />}<h3>{t.name}</h3><div class="meta">{t.squad.length} players in squad</div></a>)}</div>
+    </>
+  ) : clubs.length > 0 ? (
+    <><h2>Clubs</h2><div class="grid tight">{clubs.map((c) => <a class="card" href={`/clubs/${slugOf(c)}`}><h3>{c.data.name}</h3><div class="meta">{c.data.city ?? c.data.country}</div></a>)}</div></>
+  ) : null}
+
+  <article class="prose" style="margin-top:2rem"><Content /></article>
+</Base>

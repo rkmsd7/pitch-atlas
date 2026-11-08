@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description?: string; section?: string }
+const { title, description = 'Pitch Atlas: leagues, clubs, players, managers, tournaments and tactics of world football, with live tables and fixtures.', section } = Astro.props;
+const path = Astro.url.pathname;
+const links = [
+  ['/leagues', 'Leagues'], ['/clubs', 'Clubs'], ['/players', 'Players'], ['/managers', 'Managers'],
+  ['/tournaments', 'Tournaments'], ['/nations', 'Nations'], ['/women', "Women's"], ['/tactics', 'Tactics'], ['/fixtures', 'Fixtures'],
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Pitch Atlas</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="/"><span class="ball"></span> Pitch Atlas</a>
+        <nav class="nav-links">
+          {links.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>)}
+        </nav>
+        <div class="search">
+          <input id="q" type="search" placeholder="Search players, clubs…" autocomplete="off" aria-label="Search" />
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+    </header>
+    <main class="wrap"><slot /></main>
+    <footer>
+      <div class="wrap">
+        <p><strong>Pitch Atlas</strong> is a Markdown-driven football encyclopedia. Live tables, fixtures and squads refresh from public data at build time; editorial pages are written by hand in <code>src/content</code>.</p>
+        <p class="small">Video links open YouTube searches rather than specific uploads. Club crests and player photos are served by ESPN. Not affiliated with any league or federation.</p>
+      </div>
+    </footer>
+    <script>
+      const input = document.getElementById('q') as HTMLInputElement;
+      const box = document.getElementById('search-results')!;
+      let index: { t: string; k: string; u: string; s: string }[] | null = null;
+      async function load() { if (!index) index = await fetch('/search.json').then((r) => r.json()); return index!; }
+      input.addEventListener('focus', load);
+      input.addEventListener('input', async () => {
+        const q = input.value.trim().toLowerCase();
+        if (q.length < 2) { box.classList.remove('open'); return; }
+        const idx = await load();
+        const hits = idx.filter((e) => e.t.toLowerCase().includes(q) || e.s.toLowerCase().includes(q)).slice(0, 14);
+        box.innerHTML = hits.map((h) => `<a href="${h.u}"><span>${h.t}<br><small class="muted">${h.s}</small></span><span class="kind">${h.k}</span></a>`).join('') || '<a>No results</a>';
+        box.classList.add('open');
+      });
+      document.addEventListener('click', (e) => { if (!(e.target as HTMLElement).closest('.search')) box.classList.remove('open'); });
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const a = box.querySelector('a[href]') as HTMLAnchorElement; if (a) location.href = a.href; } });
+    </script>
+  </body>
+</html>
